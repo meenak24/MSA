@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 public class CurrencyConversionController {
 
@@ -29,18 +27,11 @@ public class CurrencyConversionController {
 	}
 	@GetMapping("/currency-conversion/getCountryCode/{countryCode}")
 	public Double getByCountryCode(@PathVariable String countryCode) {
-		/*
-		 * CurrencyConversion conversion= repository.findByCountryCode(countryCode);
-		 * 
-		 * if(countryCode.equalsIgnoreCase("US")) { throw new RuntimeException(); }
-		 * 
-		 * conversion.setPort(
-		 * Integer.parseInt(environment.getProperty("local.server.port")));
-		 * 
-		 * 
-		 */
-		 
-		return 80.0;
+		  CurrencyConversion conversion= repository.findByCountryCode(countryCode);
+		  if(countryCode.equalsIgnoreCase("US")) { throw new RuntimeException(); }
+		  conversion.setPort(
+		  Integer.parseInt(environment.getProperty("local.server.port")));
+		return conversion.getConversionFactor();
 	}
 
 	@PutMapping("/currency-conversion/update/")
